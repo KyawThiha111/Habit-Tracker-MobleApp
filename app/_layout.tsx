@@ -1,29 +1,27 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { useEffect, useState } from "react";
+import { useRouter,Stack } from "expo-router";
+import { View, ActivityIndicator } from "react-native";
+import { AuthProvider } from "@/libs/auth-context";
+function RouteGuard({children}:{children:React.ReactNode}){
+  const isAuth = false;
+  const router = useRouter();
+   useEffect(()=>{
+    if(!isAuth){
+      router.replace("/auth")
+    }
+   })
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
+   return <>{children}</>
+}
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+  return(
+<>
+  <AuthProvider>
+    <Stack>
+    <Stack.Screen name="(tabs)" options={{headerShown:false}}/>
+  </Stack>
+  </AuthProvider>
+ </>
   );
 }
+
