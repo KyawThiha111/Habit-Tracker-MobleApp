@@ -56,7 +56,7 @@ export default function AuthPage() {
         <TextInput
         style={styles.input}
         label="password"
-        keyboardType="email-address"
+        secureTextEntry
         placeholder="password"
         mode="outlined"
         onChangeText={setPassword}

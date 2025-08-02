@@ -4,7 +4,7 @@ import { Tabs } from "expo-router";
 export default function TabsLayout() {
   return (
     <>
-      <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+      <Tabs screenOptions={{ tabBarActiveTintColor: "red" }}>
         <Tabs.Screen
           name="index"
           options={{
@@ -14,7 +14,7 @@ export default function TabsLayout() {
             ),
           }}
         />
-        <Tabs.Screen name="login" options={{title:"Login Page",tabBarIcon:({focused,color})=>{return focused?(<FontAwesome6 name="user-check" size={24} color={color} />):(<FontAwesome6 name="user-xmark" size={24} color={color} />)}}}/>
+        <Tabs.Screen name="aboutus" options={{title:"About Us",tabBarIcon:({focused,color})=>{return focused?(<FontAwesome6 name="user-check" size={24} color={color} />):(<FontAwesome6 name="user-xmark" size={24} color={color} />)}}}/>
       </Tabs>
     </>
   );
